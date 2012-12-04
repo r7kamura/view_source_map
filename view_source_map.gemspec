@@ -7,12 +7,13 @@ require "view_source_map/version"
 Gem::Specification.new do |s|
   s.name        = "view_source_map"
   s.version     = ViewSourceMap::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of ViewSourceMap."
-  s.description = "TODO: Description of ViewSourceMap."
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.authors     = ["Ryo Nakamura"]
+  s.email       = ["r7kamura@gmail.com"]
+  s.homepage    = "https://github.com/r7kamura/view_source_map"
+  s.summary     = "Rails plugin to view source map"
+  s.description = "This is a Rails plugin to insert the path name of " +
+                  "a rendered partial view as HTML comment in development environment"
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
   s.add_dependency "rails", "~> 3.2.9"
   s.add_development_dependency "sqlite3"
