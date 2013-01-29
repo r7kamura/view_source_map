@@ -52,8 +52,8 @@ describe ExamplesController do
 
         it "does not show partial view's relative path as HTML comment" do
           should be_success
-          response.body.should_not include("<!-- BEGIN app/views/examples/_text.text.erb -->")
-          response.body.should_not include("<!-- END app/views/examples/_text.text.erb -->")
+          response.body.should_not include("<!-- BEGIN app/views/examples/_example.text.erb -->")
+          response.body.should_not include("<!-- END app/views/examples/_example.text.erb -->")
         end
       end
     end
