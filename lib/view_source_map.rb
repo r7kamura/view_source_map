@@ -11,13 +11,18 @@ module ViewSourceMap
     ActionView::PartialRenderer.class_eval do
       def render_with_path_comment(context, options, block)
         content = render_without_path_comment(context, options, block)
-        if options[:layout]
-          name = "#{options[:layout]}(layout)"
+
+        if @lookup_context.rendered_format == :html
+          if options[:layout]
+            name = "#{options[:layout]}(layout)"
+          else
+            path = Pathname.new(@template.identifier)
+            name = path.relative_path_from(Rails.root)
+          end
+          "<!-- BEGIN #{name} -->#{content}<!-- END #{name} -->".html_safe
         else
-          path = Pathname.new(@template.identifier)
-          name = path.relative_path_from(Rails.root)
+          content
         end
-        "<!-- BEGIN #{name} -->#{content}<!-- END #{name} -->".html_safe
       end
       alias_method_chain :render, :path_comment
     end
