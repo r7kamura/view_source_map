@@ -12,6 +12,8 @@ describe ExamplesController do
           should be_success
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
+          response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
+          response.body.should_not include("<!-- END app/views/examples/index.html.erb -->")
         end
       end
 
@@ -24,6 +26,8 @@ describe ExamplesController do
           should be_success
           response.body.should include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should include("<!-- END app/views/examples/_example.html.erb -->")
+          response.body.should include("<!-- BEGIN app/views/examples/index.html.erb -->")
+          response.body.should include("<!-- END app/views/examples/index.html.erb -->")
         end
       end
 
@@ -36,6 +40,8 @@ describe ExamplesController do
           should be_success
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
+          response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
+          response.body.should_not include("<!-- END app/views/examples/index.html.erb -->")
         end
       end
     end
@@ -54,6 +60,8 @@ describe ExamplesController do
           should be_success
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.text.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.text.erb -->")
+          response.body.should_not include("<!-- BEGIN app/views/examples/index.text.erb -->")
+          response.body.should_not include("<!-- END app/views/examples/index.text.erb -->")
         end
       end
     end
