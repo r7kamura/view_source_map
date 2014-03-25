@@ -26,12 +26,31 @@ module ViewSourceMap
       end
       alias_method_chain :render, :path_comment
     end
+
+    ActionView::TemplateRenderer.class_eval do
+      def render_template_with_path_comment(template, layout_name = nil, locals = {})
+        content = render_template_without_path_comment(template, layout_name, locals)
+        if @lookup_context.rendered_format == :html
+          path = Pathname.new(template.identifier)
+          name = path.relative_path_from(Rails.root)
+          "<!-- BEGIN #{name} -->#{content}<!-- END #{name} -->".html_safe
+        else
+          content
+        end
+      end
+      alias_method_chain :render_template, :path_comment
+    end
   end
 
   def self.detach
     ActionView::PartialRenderer.class_eval do
       undef_method :render_with_path_comment
       alias_method :render, :render_without_path_comment
+    end
+
+    ActionView::TemplateRenderer.class_eval do
+      undef_method :render_template_with_path_comment
+      alias_method :render_template, :render_template_without_path_comment
     end
   end
 end
