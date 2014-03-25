@@ -29,13 +29,19 @@ module ViewSourceMap
 
     ActionView::TemplateRenderer.class_eval do
       def render_template_with_path_comment(template, layout_name = nil, locals = {})
-        content = render_template_without_path_comment(template, layout_name, locals)
-        if @lookup_context.rendered_format == :html
-          path = Pathname.new(template.identifier)
-          name = path.relative_path_from(Rails.root)
-          "<!-- BEGIN #{name} -->#{content}<!-- END #{name} -->".html_safe
-        else
-          content
+        view, locals = @view, locals || {}
+
+        render_with_layout(layout_name, locals) do |layout|
+          instrument(:template, :identifier => template.identifier, :layout => layout.try(:virtual_path)) do
+            content = template.render(view, locals) { |*name| view._layout_for(*name) }
+            if @lookup_context.rendered_format == :html
+              path = Pathname.new(template.identifier)
+              name = path.relative_path_from(Rails.root)
+              "<!-- BEGIN #{name} -->#{content}<!-- END #{name} -->".html_safe
+            else
+              content
+            end
+          end
         end
       end
       alias_method_chain :render_template, :path_comment
