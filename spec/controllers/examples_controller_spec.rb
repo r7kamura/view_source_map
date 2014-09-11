@@ -29,6 +29,11 @@ describe ExamplesController do
           response.body.should include("<!-- BEGIN app/views/examples/index.html.erb -->")
           response.body.should include("<!-- END app/views/examples/index.html.erb -->")
         end
+
+        it "does not show partial view's relative path as HTML comment when disabled" do
+          response.body.should_not include("<!-- BEGIN app/views/examples/_example_disabled.html.erb -->")
+          response.body.should_not include("<!-- BEGIN app/views/examples/_example_disabled_partial.html.erb -->")
+        end
       end
 
       context "when ViewSourceMap is detached" do
