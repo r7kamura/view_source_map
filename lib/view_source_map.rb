@@ -37,6 +37,8 @@ module ViewSourceMap
         render_with_layout(layout_name, locals) do |layout|
           instrument(:template, :identifier => template.identifier, :layout => layout.try(:virtual_path)) do
             content = template.render(view, locals) { |*name| view._layout_for(*name) }
+            return content if ViewSourceMap.force_disabled?(locals)
+
             if @lookup_context.rendered_format == :html and template.class != ActionView::Template::Text
               path = Pathname.new(template.identifier)
               name = path.relative_path_from(Rails.root)
@@ -69,6 +71,6 @@ module ViewSourceMap
     return false if options.nil?
     return true  if options[:view_source_map] == false
     return false if options[:locals].nil?
-    return true  if options[:locals][:view_source_map] == false
+    options[:locals][:view_source_map] == false
   end
 end
