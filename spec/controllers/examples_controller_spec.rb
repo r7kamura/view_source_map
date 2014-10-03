@@ -71,4 +71,29 @@ describe ExamplesController do
       end
     end
   end
+
+  describe "#render_to_string" do
+    before do
+      ViewSourceMap.attach
+    end
+
+    let(:template)   { '_example' }
+    let(:locals)     { {} }
+    subject do
+      described_class.new.render_to_string(template, locals: locals)
+    end
+
+    context 'with no option' do
+      it "shows partial view's relative path as HTML comment" do
+        subject.should include("<!-- BEGIN app/views/examples/_example.html.erb -->")
+      end
+    end
+
+    context 'with disable option' do
+      let(:locals) { { view_source_map: false } }
+      it "does not show partial view's relative path as HTML comment" do
+        subject.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
+      end
+    end
+  end
 end
