@@ -1,3 +1,6 @@
+## 0.1.0
+* Fix disabled option on `render_to_string`
+
 ## 0.0.9
 * Add `view_source_map: false` option to `render` method
 
