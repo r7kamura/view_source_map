@@ -8,7 +8,7 @@ module ViewSourceMap
   end
 
   def self.attach
-    return if @attached
+    return if defined?(@attached) && @attached
     @attached = true
     ActionView::PartialRenderer.class_eval do
       def render_with_path_comment(context, options, block)
