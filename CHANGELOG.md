@@ -1,3 +1,6 @@
+## 0.1.1
+* Fix Ruby warnning (instance variable not initialized)
+
 ## 0.1.0
 * Fix disabled option on `render_to_string`
 
