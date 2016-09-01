@@ -1,4 +1,4 @@
-require "spec_helper"
+require "rails_helper"
 
 describe ExamplesController do
   describe "#index" do
@@ -8,6 +8,10 @@ describe ExamplesController do
       end
 
       context "when RenderWithPathComment is not attached" do
+        before do
+          ViewSourceMap.detach
+        end
+
         it "does not show partial view's relative path as HTML comment" do
           should be_success
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
