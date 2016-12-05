@@ -1,3 +1,6 @@
+## 0.1.2
+* Suppress warning on Rails 5. (Drop using `alias_method_chain`)
+
 ## 0.1.1
 * Fix Ruby warnning (instance variable not initialized)
 
