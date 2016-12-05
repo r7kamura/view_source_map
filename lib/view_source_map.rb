@@ -27,7 +27,8 @@ module ViewSourceMap
           content
         end
       end
-      alias_method_chain :render, :path_comment
+      alias_method :render_without_path_comment, :render
+      alias_method :render, :render_with_path_comment
     end
 
     ActionView::TemplateRenderer.class_eval do
@@ -49,7 +50,8 @@ module ViewSourceMap
           end
         end
       end
-      alias_method_chain :render_template, :path_comment
+      alias_method :render_template_without_path_comment, :render_template
+      alias_method :render_template, :render_template_with_path_comment
     end
   end
 
