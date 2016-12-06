@@ -1,5 +1,6 @@
 # ViewSourceMap
 
+[![Gem](https://img.shields.io/gem/v/formatador.svg)](https://rubygems.org/gems/view_source_map)
 [![Build Status](https://travis-ci.org/r7kamura/view_source_map.svg?branch=master)](https://travis-ci.org/r7kamura/view_source_map)
 
 This is a Rails plugin to insert the path name of a rendered partial view as HTML comment in development environment.
