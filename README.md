@@ -1,7 +1,9 @@
 # ViewSourceMap
+
 This is a Rails plugin to insert the path name of a rendered partial view as HTML comment in development environment.
 
 ## Usage
+
 In your Gemfile
 
 ```ruby
@@ -21,6 +23,7 @@ then see the source of your page:
 ![](http://dl.dropbox.com/u/5978869/image/20121204_171625.png)
 
 ## Tips
+
 Sometimes this adds too much noise to the html when you're developing.
 There is a simple way to turn it off.
 
