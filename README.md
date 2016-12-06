@@ -21,10 +21,6 @@ and launch your rails server in development environment:
 $ rails s
 ```
 
-then see the source of your page:
-
-![](http://dl.dropbox.com/u/5978869/image/20121204_171625.png)
-
 ## Tips
 
 Sometimes this adds too much noise to the html when you're developing.
