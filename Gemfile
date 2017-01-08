@@ -15,5 +15,8 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
+# nokogiri 1.7 requires Ruby version >= 2.1.0
+gem "nokogiri", "1.6.8.1" if RUBY_VERSION < "2.1.0"
+
 # To use debugger
 # gem 'ruby-debug'
