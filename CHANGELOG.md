@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Fix bug in unnamed html templates
+
 ## 0.1.3
 
 - Fix bug in unnamed templates
