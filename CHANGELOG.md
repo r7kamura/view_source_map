@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Fix bug in unnamed templates
+
 ## 0.1.2
 
 - Suppress warning on Rails 5. (Drop using `alias_method_chain`)
