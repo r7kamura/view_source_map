@@ -40,7 +40,7 @@ module ViewSourceMap
             content = template.render(view, locals) { |*name| view._layout_for(*name) }
             return content if ViewSourceMap.force_disabled?(locals)
 
-            if @lookup_context.rendered_format == :html and template.class != ActionView::Template::Text
+            if @lookup_context.rendered_format == :html && template.class != ActionView::Template::Text && !template.identifier.to_s.empty?
               path = Pathname.new(template.identifier)
               name = path.relative_path_from(Rails.root)
               "<!-- BEGIN #{name} -->\n#{content}<!-- END #{name} -->".html_safe
