@@ -19,6 +19,7 @@ module ViewSourceMap
           if options[:layout]
             name = "#{options[:layout]}(layout)"
           else
+            return content unless @template.respond_to?(:identifier)
             path = Pathname.new(@template.identifier)
             name = path.relative_path_from(Rails.root)
           end
