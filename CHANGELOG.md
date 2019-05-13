@@ -1,3 +1,7 @@
+## Unreleased
+
+- Fix bug on empty collection.
+
 ## 0.1.4
 
 - Fix bug in unnamed html templates
