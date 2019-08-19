@@ -13,7 +13,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
@@ -27,9 +27,11 @@ describe ExamplesController do
         end
 
         it "shows partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should include("<!-- END app/views/examples/_example.html.erb -->")
+          response.body.should include("<!-- BEGIN app/views/examples/_example_collection_item.html.erb -->")
+          response.body.should include("<!-- END app/views/examples/_example_collection_item.html.erb -->")
           response.body.should include("<!-- BEGIN app/views/examples/index.html.erb -->")
           response.body.should include("<!-- END app/views/examples/index.html.erb -->")
         end
@@ -46,7 +48,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
@@ -66,7 +68,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.text.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.text.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.text.erb -->")
@@ -81,10 +83,10 @@ describe ExamplesController do
       ViewSourceMap.attach
     end
 
-    let(:template)   { '_example' }
-    let(:locals)     { {} }
+    let(:args) { { partial: 'example', locals: locals } }
+    let(:locals) {}
     subject do
-      described_class.new.render_to_string(template, locals: locals)
+      described_class.new.render_to_string(args)
     end
 
     context 'with no option' do

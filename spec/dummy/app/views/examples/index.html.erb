@@ -1,5 +1,6 @@
 <h1>ExamplesController#index</h1>
 
 <%= render "example" %>
+<ul> <%= render partial: "example_collection_item", collection: Array.new(10) { 'some model' }  %> </ul>
 <%= render "example_disabled", view_source_map: false %>
 <%= render partial: "example_disabled_partial", view_source_map: false %>

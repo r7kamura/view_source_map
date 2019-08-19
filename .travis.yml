@@ -20,6 +20,7 @@ env:
     - RAILS_VERSION="~> 5.0.0"
     - RAILS_VERSION="~> 5.1.0"
     - RAILS_VERSION="~> 5.2.0"
+    - RAILS_VERSION="~> 6.0.0"
 matrix:
   exclude:
     - rvm: 2.0.0
@@ -28,9 +29,19 @@ matrix:
       env: RAILS_VERSION="~> 5.1.0"
     - rvm: 2.0.0
       env: RAILS_VERSION="~> 5.2.0"
+    - rvm: 2.0.0
+      env: RAILS_VERSION="~> 6.0.0"
     - rvm: 2.1.10
       env: RAILS_VERSION="~> 5.0.0"
     - rvm: 2.1.10
       env: RAILS_VERSION="~> 5.1.0"
     - rvm: 2.1.10
       env: RAILS_VERSION="~> 5.2.0"
+    - rvm: 2.1.10
+      env: RAILS_VERSION="~> 6.0.0"
+    - rvm: 2.2.10
+      env: RAILS_VERSION="~> 6.0.0"
+    - rvm: 2.3.8
+      env: RAILS_VERSION="~> 6.0.0"
+    - rvm: 2.4.5
+      env: RAILS_VERSION="~> 6.0.0"
