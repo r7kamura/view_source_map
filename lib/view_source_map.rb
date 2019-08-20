@@ -16,9 +16,7 @@ module ViewSourceMap
         return content if ViewSourceMap.force_disabled?(options)
 
         if @lookup_context.formats.first == :html
-          name = ViewSourceMap.find_name(content, options)
-          return content unless name
-          ViewSourceMap.update_content_with_comment!(content, name)
+          ViewSourceMap.update_content_with_comment!(content, options)
         else
           content
         end
@@ -65,28 +63,28 @@ module ViewSourceMap
     end
   end
 
-  def self.find_name(content, options)
+  def self.find_name(template, options)
     return "#{options[:layout]}(layout)" if options[:layout]
-
-    template = if content.is_a?(ActionView::AbstractRenderer::RenderedCollection)
-                 content.rendered_templates.first.template
-               elsif content.is_a?(ActionView::AbstractRenderer::RenderedTemplate)
-                 content.template
-               end
 
     return nil unless template.respond_to?(:identifier)
     path = Pathname.new(template.identifier)
     path.relative_path_from(Rails.root)
   end
 
-  def self.update_content_with_comment!(content, name)
+  def self.add_comment!(rendered_template, options)
+    name = ViewSourceMap.find_name(rendered_template.template, options)
+    rendered_template.instance_eval { @body = "<!-- BEGIN #{name} -->\n#{@body}<!-- END #{name} -->".html_safe }
+  end
+
+  def self.update_content_with_comment!(content, options)
     if content.is_a?(ActionView::AbstractRenderer::RenderedCollection)
       content.instance_eval do
-        @rendered_templates.first.instance_eval { @body = "<!-- BEGIN #{name} -->\n#{@body}".html_safe }
-        @rendered_templates.last.instance_eval { @body = "#{@body}<!-- END #{name} -->".html_safe }
+        @rendered_templates.each do |rendered_template|
+          ViewSourceMap.add_comment!(rendered_template, options)
+        end
       end
     elsif content.is_a?(ActionView::AbstractRenderer::RenderedTemplate)
-      content.instance_eval { @body = "<!-- BEGIN #{name} -->\n#{@body}<!-- END #{name} -->".html_safe }
+      ViewSourceMap.add_comment!(content, options)
     end
     content
   end
