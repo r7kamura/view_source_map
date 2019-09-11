@@ -15,5 +15,5 @@ Gem::Specification.new do |s|
                   "a rendered partial view as HTML comment in development environment"
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency "rails", ">= 3.2"
+  s.add_dependency "rails", ">= 5"
 end
