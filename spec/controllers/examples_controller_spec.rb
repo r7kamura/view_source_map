@@ -81,10 +81,10 @@ describe ExamplesController do
       ViewSourceMap.attach
     end
 
-    let(:template)   { '_example' }
-    let(:locals)     { {} }
+    let(:locals) { {} }
+
     subject do
-      described_class.new.render_to_string(template, locals: locals)
+      described_class.new.render_to_string(partial: 'example', locals: locals)
     end
 
     context 'with no option' do
