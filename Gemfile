@@ -20,3 +20,5 @@ gem "nokogiri", "1.6.8.1" if RUBY_VERSION < "2.1.0"
 
 # To use debugger
 # gem 'ruby-debug'
+
+gem "rspec-rails"
