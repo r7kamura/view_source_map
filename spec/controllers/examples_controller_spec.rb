@@ -13,7 +13,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
@@ -27,7 +27,7 @@ describe ExamplesController do
         end
 
         it "shows partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should include("<!-- END app/views/examples/_example.html.erb -->")
           response.body.should include("<!-- BEGIN app/views/examples/index.html.erb -->")
@@ -46,7 +46,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.html.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.html.erb -->")
@@ -66,7 +66,7 @@ describe ExamplesController do
         end
 
         it "does not show partial view's relative path as HTML comment" do
-          should be_success
+          should be_successful
           response.body.should_not include("<!-- BEGIN app/views/examples/_example.text.erb -->")
           response.body.should_not include("<!-- END app/views/examples/_example.text.erb -->")
           response.body.should_not include("<!-- BEGIN app/views/examples/index.text.erb -->")
