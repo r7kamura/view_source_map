@@ -1,12 +1,6 @@
-module ViewSourceMap
-  class Railtie < Rails::Railtie
-    initializer "render_with_path_comment.initialize" do
-      if !ENV["DISABLE_VIEW_SOURCE_MAP"] && Rails.env.development?
-        ViewSourceMap.attach
-      end
-    end
-  end
+require 'view_source_map/railtie'
 
+module ViewSourceMap
   def self.attach
     return if defined?(@attached) && @attached
     @attached = true
