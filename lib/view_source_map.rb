@@ -1,6 +1,8 @@
 require 'view_source_map/railtie'
 
-if Rails.gem_version >= Gem::Version.new('6')
+if Rails.gem_version >= Gem::Version.new('6.1')
+  require 'view_source_map_rails_6'
+elsif Rails.gem_version >= Gem::Version.new('6.0')
   require 'view_source_map_rails_6_0'
 else
   require 'view_source_map_rails_4_and_5'
