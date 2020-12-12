@@ -4,18 +4,18 @@ module ViewSourceMap
     @attached = true
 
     ActionView::PartialRenderer.class_eval do
-      def render_with_path_comment(partial, context, block)
-        content = render_without_path_comment(partial, context, block)
-        return content if ViewSourceMap.force_disabled?(@options)
+      def render_with_path_comment(context, options, block)
+        content = render_without_path_comment(context, options, block)
+        return content if ViewSourceMap.force_disabled?(options)
 
         if @lookup_context.formats.first == :html
           case content
           when ActionView::AbstractRenderer::RenderedCollection
             content.rendered_templates.each do |rendered_template|
-              ViewSourceMap.wrap_rendered_template(rendered_template, @options)
+              ViewSourceMap.wrap_rendered_template(rendered_template, options)
             end
           when ActionView::AbstractRenderer::RenderedTemplate
-            ViewSourceMap.wrap_rendered_template(content, @options)
+            ViewSourceMap.wrap_rendered_template(content, options)
           end
         end
         content
@@ -27,11 +27,7 @@ module ViewSourceMap
     ActionView::TemplateRenderer.class_eval do
       def render_template_with_path_comment(view, template, layout_name, locals)
         render_with_layout(view, template, layout_name, locals) do |layout|
-          ActiveSupport::Notifications.instrument(
-            'render_template.action_view',
-            identifier: template.identifier,
-            layout: layout.try(:virtual_path),
-          ) do
+          instrument(:template, identifier: template.identifier, layout: layout.try(:virtual_path)) do
             content = template.render(view, locals) { |*name| view._layout_for(*name) }
             return content if ViewSourceMap.force_disabled?(locals)
 
