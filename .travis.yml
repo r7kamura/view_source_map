@@ -21,6 +21,8 @@ env:
 matrix:
   exclude:
     - rvm: 2.2.10
+      env: RAILS_VERSION="~> 5.2.0"
+    - rvm: 2.2.10
       env: RAILS_VERSION="~> 6.0.0"
     - rvm: 2.3.8
       env: RAILS_VERSION="~> 6.0.0"
