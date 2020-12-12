@@ -7,8 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- Add Rails 6 partially support.
-  - Does not support `CollectionRenderer` and `ObjectRenderer` yet.
+### Added
+
+- Add Rails 6 partially support (Does not support `CollectionRenderer` and `ObjectRenderer` yet).
 
 ## 0.2.0 - 2019-09-11
 
