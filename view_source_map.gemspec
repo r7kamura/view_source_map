@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Ryo Nakamura"]
   s.email       = ["r7kamura@gmail.com"]
   s.homepage    = "https://github.com/r7kamura/view_source_map"
-  s.summary     = "Rails plugin to view source map"
+  s.summary     = "Rails plugin to embed template path as HTML comment."
   s.description = "This is a Rails plugin to insert the path name of " +
                   "a rendered partial view as HTML comment in development environment"
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]

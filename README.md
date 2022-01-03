@@ -3,11 +3,11 @@
 [![Gem](https://img.shields.io/gem/v/view_source_map.svg)](https://rubygems.org/gems/view_source_map)
 [![Build Status](https://travis-ci.org/r7kamura/view_source_map.svg?branch=master)](https://travis-ci.org/r7kamura/view_source_map)
 
-This is a Rails plugin to insert the path name of a rendered partial view as HTML comment in development environment.
+Rails plugin to embed template path as HTML comment.
 
 ## Usage
 
-In your Gemfile
+Add this line to your application's Gemfile:
 
 ```ruby
 group :development do
@@ -15,24 +15,26 @@ group :development do
 end
 ```
 
-and launch your rails server in development environment:
+Then you can see the rendered HTML contains some comments like this:
 
-```
-$ rails s
+```html
+<!-- BEGIN app/views/hello/index.html.erb -->
+<p>Hello</p>
+<!-- END app/views/hello/index.html.erb -->
 ```
 
-## Tips
+### Disable
 
 Sometimes this adds too much noise to the html when you're developing.
 There is a simple way to turn it off.
 
-```
-$ DISABLE_VIEW_SOURCE_MAP=1 rails s
+```shell
+DISABLE_VIEW_SOURCE_MAP=1 rails s
 ```
 
 or
 
-```
+```erb
 <%= render "example_disabled", view_source_map: false %>
 <%= render partial: "example_disabled_partial", view_source_map: false %>
 ```
