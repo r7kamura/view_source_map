@@ -5,6 +5,9 @@
 
 Rails plugin to embed template path as HTML comment.
 
+This project has done its job.
+Use `Rails.configuration.action_view.annotate_rendered_view_with_filenames` instead.
+
 ## Usage
 
 Add this line to your application's Gemfile:
